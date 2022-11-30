@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: puttasa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 22:27:49 by puttasa           #+#    #+#             */
-/*   Updated: 2022/11/29 22:19:00 by puttasa          ###   ########.fr       */
+/*   Created: 2022/11/30 17:43:56 by puttasa           #+#    #+#             */
+/*   Updated: 2022/11/30 18:47:06 by puttasa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd, char *tmp)
+char	*ft_read(int fd, char *box)
 {
 	char	*buff;
 	int		checkread;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (0);
 	checkread = 1;
@@ -30,79 +30,79 @@ char	*ft_read(int fd, char *tmp)
 			return (0);
 		}
 		buff[checkread] = '\0';
-		tmp = ft_strjoin(tmp, buff);
+		box = ft_strjoin(box, buff);
 	}
 	free(buff);
-	return (tmp);
+	return (box);
 }
 
-char	*ft_get_line(char *tmp)
+char	*ft_get_line(char *box)
 {
 	char	*line;
 	int		len;
 	int		i;
-	
+
 	i = 0;
-	len = ft_linelen(tmp);
-	if (!tmp[0])
+	len = ft_linelen(box);
+	if (!box[0])
 		return (0);
 	line = malloc(sizeof(char) * (len + 2));
 	if (!line)
 		return (0);
 	while (i < len)
 	{
-		line[i] = tmp[i];
+		line[i] = box[i];
 		i++;
 	}
-	if (tmp[i] == '\n')
+	if (box[i] == '\n')
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
 }
 
-char	*ft_extra_line(char *tmp)
+char	*ft_extra_line(char *box)
 {
+	char	*line;
 	int		len;
 	int		i;
-	char	*line;
 
 	i = 0;
-	len = ft_linelen(tmp);
-	if (!tmp[len])
+	len = ft_linelen(box);
+	if (!box[len])
 	{
-		free(tmp);
+		free(box);
 		return (0);
 	}
-	line = malloc(sizeof(char) * (ft_strlen(tmp) - len + 1));
+	line = malloc(sizeof(char) * (ft_strlen(box) - len + 1));
 	if (!line)
 		return (0);
 	len++;
-	while (tmp[len])
-		line[i++] = tmp[len++];
+	while (box[len])
+		line[i++] = box[len++];
 	line[i] = '\0';
-	free(tmp);
+	free(box);
 	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*tmp;
-	char		*line;
+	char	 	*line;
+	static char	*box;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (0);
-	if (!tmp)
+	if (!box)
 	{
-		tmp = malloc(1);
-		tmp[0] = '\0';
+		box = malloc(1);
+		box[0] = '\0';
 	}
-	tmp = ft_read(fd, tmp);
-	if (!*tmp)
+	box = ft_read(fd, box);
+	if (!box)
 	{
-		free(tmp);
+		free(box);
 		return (0);
 	}
-	line = ft_get_line(tmp);
-	tmp = ft_extra_line(tmp);
+	line = ft_get_line(box);
+	box = ft_extra_line(box);
 	return (line);
 }
