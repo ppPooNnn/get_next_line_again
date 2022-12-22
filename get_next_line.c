@@ -6,7 +6,7 @@
 /*   By: puttasa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:43:56 by puttasa           #+#    #+#             */
-/*   Updated: 2022/11/30 18:47:06 by puttasa          ###   ########.fr       */
+/*   Updated: 2022/12/22 16:03:34 by puttasa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*ft_extra_line(char *box)
 
 char	*get_next_line(int fd)
 {
-	char	 	*line;
+	char		*line;
 	static char	*box;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)

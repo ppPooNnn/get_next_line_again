@@ -6,7 +6,7 @@
 /*   By: puttasa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:21:38 by puttasa           #+#    #+#             */
-/*   Updated: 2022/11/30 17:42:51 by puttasa          ###   ########.fr       */
+/*   Updated: 2022/12/22 16:00:34 by puttasa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ char	*ft_read(int fd, char *tmp);
 char	*ft_get_line(char *tmp);
 char	*ft_extra_line(char *tmp);
 
-int		ft_strlen(const char *s);
-int		ft_linelen(const char *s);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(const char *s1, const char *s2);
+int		ft_strlen(char *s);
+int		ft_linelen(char *s);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif
