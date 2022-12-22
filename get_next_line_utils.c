@@ -6,7 +6,7 @@
 /*   By: puttasa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:39:23 by puttasa           #+#    #+#             */
-/*   Updated: 2022/12/22 16:03:52 by puttasa          ###   ########.fr       */
+/*   Updated: 2022/12/22 16:49:57 by puttasa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,20 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*new;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	if (!s1 || !s2)
 		return (0);
 	new = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!new)
 		return (0);
-	while (*s1)
-		new[i++] = *s1++;
-	s1 = s1 - i;
-	while (*s2)
-		new[i++] = *s2++;
+	while (s1[j])
+		new[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		new[i++] = s2[j++];
 	new[i] = '\0';
 	free(s1);
 	return (new);
